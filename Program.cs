@@ -34,9 +34,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
- 
 
-void LoadServices(WebApplicationBuilder builder) 
+
+void LoadServices(WebApplicationBuilder builder)
 {
     var baseUrl = builder.Configuration.GetValue<string>("ApiConfig");
     Configuration.BaseUrl = baseUrl;
@@ -47,11 +47,11 @@ void LoadServices(WebApplicationBuilder builder)
     builder.Services.AddTransient<TokenService>();
 }
 
-void ConfigureServices(WebApplicationBuilder builder) 
+void ConfigureServices(WebApplicationBuilder builder)
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-    builder.Services.AddDbContext<CadastroDataContext>(options => 
+    builder.Services.AddDbContext<CadastroDataContext>(options =>
             options.UseSqlServer(connectionString));
 
     builder.Services.AddAuthentication(options =>
@@ -59,7 +59,7 @@ void ConfigureServices(WebApplicationBuilder builder)
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
-    .AddJwtBearer(x => 
+    .AddJwtBearer(x =>
     {
         x.TokenValidationParameters = new TokenValidationParameters
         {
@@ -71,13 +71,13 @@ void ConfigureServices(WebApplicationBuilder builder)
     });
 }
 
-void ConfigureMvc(WebApplicationBuilder builder) 
+void ConfigureMvc(WebApplicationBuilder builder)
 {
     builder.Services
         .AddControllers()
         .ConfigureApiBehaviorOptions(x =>
             x.SuppressModelStateInvalidFilter = true)
-        .AddJsonOptions(options => 
+        .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;

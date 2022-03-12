@@ -5,7 +5,7 @@ namespace CadastroApi.Extensions
 {
     public static class UserClaimsExtension
     {
-        public static List<Claim> GetClaims(this User user) 
+        public static List<Claim> GetClaims(this User user)
         {
             var results = new List<Claim>
             {

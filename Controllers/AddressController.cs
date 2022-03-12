@@ -13,15 +13,15 @@ namespace CadastroApi.Controllers
     public class AddressController : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync([FromServices] CadastroDataContext context) 
+        public async Task<IActionResult> GetAllAsync([FromServices] CadastroDataContext context)
         {
-            try 
+            try
             {
                 var addresses = await context.Addresses.ToListAsync();
 
                 return Ok(new ResultViewModel<List<Address>>(addresses));
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 return StatusCode(500, new ResultViewModel<Address>("ExAcc500 - Erro ao acessar o servidor"));
             }
@@ -47,10 +47,10 @@ namespace CadastroApi.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]InputAddressViewModel model, [FromServices] CadastroDataContext context) 
+        public async Task<IActionResult> PostAsync([FromBody] InputAddressViewModel model, [FromServices] CadastroDataContext context)
         {
             try
-            { 
+            {
                 var cepClient = Refit.RestService.For<ICepApiInterface>(Configuration.BaseUrl);
 
                 var addressModel = await cepClient.GetAddressAsync(model.ZipCode);

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace CadastroApi.Data.Mapping
 {
     public class AddressMap : IEntityTypeConfiguration<Address>
-    { 
+    {
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.ToTable("Addresses");

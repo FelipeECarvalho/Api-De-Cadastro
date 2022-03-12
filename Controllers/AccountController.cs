@@ -1,12 +1,12 @@
 ﻿using CadastroApi.Data;
 using CadastroApi.Extensions;
 using CadastroApi.Models;
+using CadastroApi.Services;
 using CadastroApi.ViewModels;
-using SecureIdentity.Password;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using CadastroApi.Services;
+using SecureIdentity.Password;
 
 namespace CadastroApi.Controllers
 {
@@ -17,9 +17,9 @@ namespace CadastroApi.Controllers
     {
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> PostAsync([FromBody]CreateUserViewModel model, [FromServices] CadastroDataContext context) 
+        public async Task<IActionResult> PostAsync([FromBody] CreateUserViewModel model, [FromServices] CadastroDataContext context)
         {
-            try 
+            try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(new ResultViewModel<User>(ModelState.GetErrors()));
@@ -40,20 +40,20 @@ namespace CadastroApi.Controllers
                 return Ok(new ResultViewModel<dynamic>(new { user.Email, password }));
 
             }
-            catch (DbUpdateException) 
+            catch (DbUpdateException)
             {
                 return StatusCode(500, new ResultViewModel<User>("ExAcc50 - E-mail já existe"));
             }
-            catch 
+            catch
             {
                 return StatusCode(500, new ResultViewModel<User>("ExAcc50 - Erro ao inserir usuário"));
             }
         }
-        
-        
+
+
         [HttpGet("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> LoginAsync([FromBody]LoginViewModel model, [FromServices] CadastroDataContext context) 
+        public async Task<IActionResult> LoginAsync([FromBody] LoginViewModel model, [FromServices] CadastroDataContext context)
         {
             try
             {

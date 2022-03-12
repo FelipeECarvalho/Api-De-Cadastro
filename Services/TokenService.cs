@@ -9,7 +9,7 @@ namespace CadastroApi.Services
 {
     public class TokenService
     {
-        public string GetToken(User user) 
+        public string GetToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 

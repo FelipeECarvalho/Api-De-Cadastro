@@ -1,5 +1,4 @@
-﻿using CadastroApi.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace CadastroApi.ViewModels
 {
