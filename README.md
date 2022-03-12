@@ -4,7 +4,7 @@
     <br>
 </h1>
 <h4 align="center">
-  API REST feita para o cadastro de clientes e endereços. O cadastro de endereço é feito por meio do consumo de uma API , ViaCEP, via Refit.
+  API REST feita para o cadastro de clientes e endereços.
    <br>
    <br>
 </h4>
