@@ -37,6 +37,16 @@ namespace CadastroApi.Controllers
                 await context.Users.AddAsync(user);
                 await context.SaveChangesAsync();
 
+                var mail = new EmailService();
+
+                mail.Send(
+                    user.Email,
+                    user.Name,
+                    $"Obrigado por se cadastrar em nosso site, {user.Name}!",
+                    $"Esperamos que esteja gostando do site, segue sua senha de acesso, <strong>{password}</strong>",
+                    Configuration.Smtp.UserName,
+                    "Equipe@EmanuelSoftwares");
+
                 return Ok(new ResultViewModel<dynamic>(new { user.Email, password }));
 
             }
@@ -49,7 +59,6 @@ namespace CadastroApi.Controllers
                 return StatusCode(500, new ResultViewModel<User>("ExAcc50 - Erro ao inserir usuário"));
             }
         }
-
 
         [HttpGet("login")]
         [AllowAnonymous]

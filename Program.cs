@@ -41,6 +41,11 @@ void LoadServices(WebApplicationBuilder builder)
     var baseUrl = builder.Configuration.GetValue<string>("ApiConfig");
     Configuration.BaseUrl = baseUrl;
 
+    var smtp = new Configuration.SmtpConfiguration();
+    builder.Configuration.GetSection("Smtp").Bind(smtp);
+    Configuration.Smtp = smtp;
+
+
     var key = builder.Configuration.GetValue<string>("JwtKey");
     Configuration.JwtKey = key;
 
