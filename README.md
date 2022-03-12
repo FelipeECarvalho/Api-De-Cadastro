@@ -19,14 +19,16 @@
 - SQLServer - Banco de dados relacional
 - Entity Framework Core - ORM
 - Fluent Mapping - Code First
+- FluentEmail - Para envio de Emails
 - Refit - Consumo de APIs
 - Swagger - Documentação
 <br>
 
 ## 	:joystick: Funcionalidades
 - Padrão REST
-- Jwt - Para autenticar e autorizar usuários
+- Jwt para autenticar e autorizar usuários
 - O cadastro de endereços é feito através do CEP pelo consumo de uma API via Refit
+- Serviço de envio de e-mails
 - Aplicação construída visando novas implementações
 <br>
 
