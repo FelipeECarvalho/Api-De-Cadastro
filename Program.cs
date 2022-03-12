@@ -38,6 +38,9 @@ app.Run();
 
 void LoadServices(WebApplicationBuilder builder) 
 {
+    var baseUrl = builder.Configuration.GetValue<string>("ApiConfig");
+    Configuration.BaseUrl = baseUrl;
+
     var key = builder.Configuration.GetValue<string>("JwtKey");
     Configuration.JwtKey = key;
 

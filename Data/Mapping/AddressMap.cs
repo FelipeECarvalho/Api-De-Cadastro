@@ -26,6 +26,10 @@ namespace CadastroApi.Data.Mapping
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(80);
 
+            builder.Property(x => x.Number)
+                .IsRequired()
+                .HasColumnType("INT");
+
             builder.Property(x => x.State)
                 .IsRequired()
                 .HasColumnType("VARCHAR")
